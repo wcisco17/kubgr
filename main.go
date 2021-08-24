@@ -2,16 +2,15 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/wcisco17/kubgr/book"
 )
 
 func setUpRoutes(app *fiber.App) {
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Helo, world!")
 	})
-	app.Get("/book/c/:title/:desc/:pub", book.CreateBook)
-	app.Get("/book/:bookId", book.FetchBookById)
-	app.Get("/books", book.FetchBooks)
+	app.Get("/book/c/:title/:desc/:pub", CreateBook)
+	app.Get("/book/:bookId", FetchBookById)
+	app.Get("/books", FetchBooks)
 }
 
 func main() {

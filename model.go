@@ -1,12 +1,11 @@
-package book
+package main
 
 import (
 	"github.com/gofiber/fiber/v2"
-	ds "github.com/wcisco17/kubgr/client"
 )
 
 func FetchBookById(c *fiber.Ctx) error {
-	client, ctx := ds.InitNewClient()
+	client, ctx := InitNewClient()
 	bookId := c.Params("bookId")
 	books, err := FindBook(bookId, client, ctx)
 	if err != nil {
@@ -17,12 +16,12 @@ func FetchBookById(c *fiber.Ctx) error {
 }
 
 func FetchBooks(c *fiber.Ctx) error {
-	client, ctx := ds.InitNewClient()
+	client, ctx := InitNewClient()
 	return c.JSON(FindManyBooks(client, ctx))
 }
 
 func CreateBook(c *fiber.Ctx) error {
-	client, ctx := ds.InitNewClient()
+	client, ctx := InitNewClient()
 
 	title := c.Params("title")
 	desc := c.Params("desc")
