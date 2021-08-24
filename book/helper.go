@@ -25,3 +25,27 @@ func FindManyBooks(client *db.PrismaClient, ctx context.Context) []db.BookModel 
 
 	return books
 }
+
+func CreateBookPrisma(client *db.PrismaClient, ctx context.Context, book *Book) *db.BookModel {
+	pub := isPub(book)
+	books, err := client.Book.CreateOne(
+		db.Book.Title.Set(book.Title),
+		db.Book.Published.Set(db.Pub(pub)),
+		db.Book.Desc.Set(book.Desc),
+	).Exec(ctx)
+	if err != nil {
+		panic(err)
+	}
+
+	return books
+}
+
+func isPub(book *Book) string {
+	var pubs string = ""
+	if book.Published == PUBLISHED {
+		pubs = PUBLISHED
+	} else {
+		pubs = UNPUBLISHED
+	}
+	return pubs
+}

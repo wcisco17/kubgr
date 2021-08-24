@@ -1,5 +1,7 @@
 module github.com/wcisco17/kubgr
 
+replace github.com/wcisco17/kubgr/book => ./book
+
 go 1.16
 
 require (
