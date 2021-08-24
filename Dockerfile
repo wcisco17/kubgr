@@ -4,13 +4,12 @@ RUN mkdir /build
 WORKDIR /build
 
 RUN export GO111MODULE=on
-RUN go get https://github.com/wcisco17/kubgr
-RUN go run github.com/prisma/prisma-client-go db push
-RUN go run github.com/prisma/prisma-client-go db generate
 
-# COPY main.go go.* /book/ /client/
-# RUN CGO_ENABLED=0 go build -o ./bin/demo
+RUN go get github.com/wcisco17/kubgr
+RUN cd /build && git clone https://github.com/wcisco17/kubgr.git
 
-# FROM scratch
-# COPY --from=build /bin/demo /bin/demo
-# ENTRYPOINT ["/bin/demo"]
+RUN cd /build/kubgr/main ** go build
+
+EXPOSE 8080
+
+ENTRYPOINT ["/build/kubgr/main"]
