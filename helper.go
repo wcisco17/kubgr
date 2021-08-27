@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	"./db"
+	"kubgr/db"
 )
 
 func FindBook(id string, cb *db.PrismaClient, ctx context.Context) (*db.BookModel, error) {
