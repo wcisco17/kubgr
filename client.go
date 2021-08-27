@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	"kubgr/db"
+	"github.com/wcisco17/kubgr/db"
 )
 
 func InitNewClient() (*db.PrismaClient, context.Context) {
